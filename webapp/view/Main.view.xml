@@ -1,7 +1,114 @@
 <mvc:View controllerName="fiorifreestylepicking01.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:f="sap.f" 
+    xmlns:layout="sap.ui.layout" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:core="sap.ui.core" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+    displayBlock="true" 
+    height="100%">
+	
+	<f:DynamicPage 
+        id="dynamicPageId" 
+        headerExpanded="{/headerExpanded}" 
+        toggleHeaderOnTitleClick="{/titleClickable}"
+        >
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
+                <f:heading>
+                    <svm:SmartVariantManagement id="svm" showExecuteOnSelection="true" />
+                </f:heading>
+                <f:expandedContent>
+                    <Label id="expandedLabel" text="No filters active" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label id="snappedLabel" text="No filters active" />
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader id="_IDGenDynamicPageHeader1" pinnable="true">
+                <f:content>
+                    <fb:FilterBar id="filterbar" 
+                        persistencyKey="myPersKey" 
+                        useToolbar="false" 
+                        search=".onSearch" 
+                        filterChange=".onFilterChange" 
+                        afterVariantLoad=".onAfterVariantLoad">
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem id="_IDGenFilterGroupItem1" name="Transporte" label="Transporte" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <MultiComboBox id="_IDGenMultiComboBox1"
+                                        name="Transporte"
+                                        selectionChange=".onSelectionChange"
+                                        items="{
+                                            path: '/ZR270transporte',
+                                            templateShareable: true
+                                        }"
+                                    >
+                                        <core:Item id="_IDGenItem1" key="{Transporte}" text="{Transporte}"/>
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="_IDGenFilterGroupItem2" name="Status" label="Status" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <MultiComboBox id="_IDGenMultiComboBox2"
+                                        name="Status"
+                                        selectionChange=".onSelectionChange"
+                                        items="{
+                                            path: '/ZR270transporte',
+                                            templateShareable: true
+                                        }"
+                                    >
+                                        <core:Item id="_IDGenItem2" key="{Status}" text="{Status}"/>
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table 
+                id="idTable" 
+                sticky="HeaderToolbar,ColumnHeaders" 
+                inset="false" 
+                items="{
+                        path: '/ZR270transporte',
+                        sorter: {                             
+                            path: 'Transporte'
+                        }
+                }" 
+                class="sapFDynamicPageAlignContent" 
+                width="auto" 
+                mode="None"
+                >
+                <columns>
+                    <Column id="_IDGenColumn1" width="12em">
+                        <Text id="_IDGenText1" text="Transporte"/>
+                    </Column>
+                    <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true">
+                        <Text id="_IDGenText2" text="Ticket"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1" type="Navigation" press="onLinePress">
+                        <cells>
+                            <Text id="_IDGenText14" text="{Transporte}"/>
+                            <Text id="_IDGenText15" text="{Status}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+        <!-- DynamicPage Footer -->
+        <f:footer>
+        </f:footer>
+    </f:DynamicPage>
 </mvc:View>
