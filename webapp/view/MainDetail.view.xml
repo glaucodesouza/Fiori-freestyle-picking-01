@@ -28,8 +28,8 @@
                     <OverflowToolbar id="_IDGenOverflowToolbar1">
                         <GenericTag 
                             id="_IDGenGenericTag1" 
-                            text="Error"
-                            status="Error"
+                            text="{= ${modelCab>/status} === '3' ? 'Finalizado' : ${modelCab>/status} === '2' ? 'Em processamento' : ${modelCab>/status} === '1' ? 'Inicial' : 'Inicial'}"
+                            status="{= ${modelCab>/status} === '3' ? 'Success' : ${modelCab>/status} === '2' ? 'Warning' : ${modelCab>/status} === '1' ? 'None' : 'Error'}"
                             design="Full"
                             >
                         </GenericTag>
