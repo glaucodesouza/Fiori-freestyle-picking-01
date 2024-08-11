@@ -1,0 +1,196 @@
+<mvc:View 
+    controllerName="fiorifreestylepicking01.controller.MainDetail"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:f="sap.f" 
+    xmlns:layout="sap.ui.layout" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:core="sap.ui.core" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+    height="100%">
+	
+	<f:DynamicPage 
+        id="dynamicPage" 
+        headerExpanded="true" 
+        toggleHeaderOnTitleClick="true"
+        showFooter="true"
+        >
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
+                <f:breadcrumbs />
+                <f:heading>
+                    <Title id="_IDGenTitle4" text="OVs do Picking"/>
+                </f:heading>
+					<f:content>
+                    <OverflowToolbar id="_IDGenOverflowToolbar1">
+                        <GenericTag 
+                            id="_IDGenGenericTag1" 
+                            text="Error"
+                            status="Error"
+                            design="Full"
+                            >
+                        </GenericTag>
+                    </OverflowToolbar>
+                </f:content>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader id="_IDGenDynamicPageHeader1" pinnable="true">
+
+                <f:content>
+                    <!-- ............................................
+                    Fields linha 1
+                    ............................................ -->
+                    <HBox
+                        width="100%"
+                        id="hbox2"
+                    >
+                        <items>
+                            <!-- VBox 1 -->
+                            <VBox
+                                xmlns:mvc="sap.ui.core.mvc"
+                                xmlns:f="sap.f"
+                                xmlns:layout="sap.ui.layout"
+                                xmlns:sap.ui.layout.form="sap.ui.layout.form"
+                                xmlns:sap.ui.core="sap.ui.core"
+                                xmlns="sap.m"
+                                width="18%"
+                                direction="Column"
+                                id="vbox4"
+                                height="5em"
+                            >
+                                <items>
+                                    <Label
+                                        text="Transporte:"
+                                        width="100%"
+                                        id="label121"
+                                    />
+                                    <Text
+                                        text="{modelCab>/transporte}"
+                                        width="100%"
+                                        id="label122"
+                                    />
+                                </items>
+                            </VBox>
+                            <!-- VBox 2 -->
+                            <VBox
+                                xmlns:mvc="sap.ui.core.mvc"
+                                xmlns="sap.m"
+                                xmlns:f="sap.f"
+                                xmlns:layout="sap.ui.layout"
+                                xmlns:sap.ui.layout.form="sap.ui.layout.form"
+                                xmlns:sap.ui.core="sap.ui.core"
+                                width="18%"
+                                direction="Column"
+                                id="vbox4_copy"
+                            >
+                                <items>
+                                    <Label
+                                        text="Status:"
+                                        width="100%"
+                                        id="label111"
+                                    />
+                                    <Text
+                                        text="{modelCab>/status}"
+                                        width="100%"
+                                        id="label112"
+                                    />
+                                </items>
+                            </VBox>
+                            <!-- VBox 3 -->
+                            <VBox
+                                xmlns:mvc="sap.ui.core.mvc"
+                                xmlns="sap.m"
+                                xmlns:f="sap.f"
+                                xmlns:layout="sap.ui.layout"
+                                xmlns:sap.ui.layout.form="sap.ui.layout.form"
+                                xmlns:sap.ui.core="sap.ui.core"
+                                width="18%"
+                                direction="Column"
+                                id="vbox4_copy2"
+                            >
+                                <items>
+                                    <Label
+                                        text="Ov:"
+                                        width="100%"
+                                        id="lblOv"
+                                    />
+                                    <Input 
+                                        id="ipOv" 
+                                        xmlns="sap.m"
+                                        value="{modelCab>/lote}" 
+                                        showValueHelp="false" 
+                                        width="8rem" 
+                                        visible="true"
+                                        liveChange="onLiveChangeNewOv"
+                                        maxLength="10"
+                                    />
+
+                                </items>
+                            </VBox>                 
+                        </items>
+                    </HBox>
+
+                    <!-- ............................................
+                    fim Fields linha 1
+                    ............................................ -->
+                    
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table 
+                id="idPickingTransfTable" 
+                sticky="HeaderToolbar,ColumnHeaders" 
+                inset="false" 
+                items="{
+                        path: '/PickingTransfNovo',
+                        sorter: {
+                            path: 'Matnr'
+                        }
+                }"
+                class="sapFDynamicPageAlignContent"
+                width="auto"
+                updateFinished="onUpdateFinished"
+                mode="SingleSelect"
+                >
+                <columns>
+                    <Column id="_IDGenColumn1" width="12em">
+                        <Text id="_IDGenText1" text="Material"/>
+                    </Column>
+                    <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true">
+                        <Text id="_IDGenText2" text="Lote"/>
+                    </Column>
+                    <Column id="_IDGenColumn3" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                        <Text id="_IDGenText3" text="Quantidade"/>
+                    </Column>
+                    <Column id="_IDGenColumn4" hAlign="End">
+                        <Text id="_IDGenText4" text="Estoque Especial"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1">
+                        <cells>
+                            <Text id="_IDGenText14" text="{Matnr}"/>
+                            <Text id="_IDGenText15" text="{Lote}"/>
+                            <Text id="_IDGenText16" text="{Quantidade}"/>
+                            <Text id="_IDGenText17" text="{EstoqueEspecial}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+        <!-- DynamicPage Footer -->
+        <f:footer>
+            <OverflowToolbar id="_IDGenOverflowToolbarFooter">
+                <ToolbarSpacer id="_IDGenToolbarSpacerFooter"/>
+                <Button id="_footerButton1" type="Emphasized" text="Finalizar Picking" press="onFooterFinalizarClick"/>
+                <Button id="_footerButton2" type="Default" text="Eliminar Lote" press="onFooterEliminarLoteClick"/>
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

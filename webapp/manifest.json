@@ -95,9 +95,16 @@
       "routes": [
         {
           "name": "RouteMain",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetMain"
+          ]
+        },
+        {
+          "name": "RouteMainDetail",
+          "pattern": "Transporte/{Transporte}/Status/{Status}",
+          "target": [
+              "TargetMainDetail"
           ]
         }
       ],
@@ -108,6 +115,13 @@
           "clearControlAggregation": false,
           "viewId": "Main",
           "viewName": "Main"
+        },
+        "TargetMainDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "MainDetail",
+          "viewName": "MainDetail"
         }
       }
     },

@@ -94,7 +94,7 @@
                         <Text id="_IDGenText1" text="Transporte"/>
                     </Column>
                     <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true">
-                        <Text id="_IDGenText2" text="Ticket"/>
+                        <Text id="_IDGenText2" text="Status"/>
                     </Column>
                 </columns>
                 <items>
