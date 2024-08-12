@@ -60,7 +60,7 @@
                                 xmlns="sap.m"
                                 width="18%"
                                 direction="Column"
-                                id="vbox4"
+                                id="vbox1"
                                 height="5em"
                             >
                                 <items>
@@ -86,7 +86,7 @@
                                 xmlns:sap.ui.core="sap.ui.core"
                                 width="18%"
                                 direction="Column"
-                                id="vbox4_copy"
+                                id="vbox2"
                             >
                                 <items>
                                     <Label
@@ -97,7 +97,7 @@
                                     <Text
                                         text="{modelCab>/status}"
                                         width="100%"
-                                        id="label112"
+                                        id="label2"
                                     />
                                 </items>
                             </VBox>
@@ -111,7 +111,32 @@
                                 xmlns:sap.ui.core="sap.ui.core"
                                 width="18%"
                                 direction="Column"
-                                id="vbox4_copy2"
+                                id="vbox3"
+                            >
+                                <items>
+                                    <Label
+                                        text="Quantidade itens:"
+                                        width="100%"
+                                        id="label3"
+                                    />
+                                    <Text
+                                        text="{modelCab>/qtdeItens}"
+                                        width="100%"
+                                        id="label4"
+                                    />
+                                </items>
+                            </VBox>
+                            <!-- VBox 4 -->
+                            <VBox
+                                xmlns:mvc="sap.ui.core.mvc"
+                                xmlns="sap.m"
+                                xmlns:f="sap.f"
+                                xmlns:layout="sap.ui.layout"
+                                xmlns:sap.ui.layout.form="sap.ui.layout.form"
+                                xmlns:sap.ui.core="sap.ui.core"
+                                width="18%"
+                                direction="Column"
+                                id="vbox4"
                             >
                                 <items>
                                     <Label
@@ -120,13 +145,13 @@
                                         id="lblOv"
                                     />
                                     <Input 
-                                        id="ipOv" 
+                                        id="idNovaOv" 
                                         xmlns="sap.m"
-                                        value="{modelCab>/lote}" 
+                                        value=""
                                         showValueHelp="false" 
                                         width="8rem" 
                                         visible="true"
-                                        liveChange="onLiveChangeNewOv"
+                                        liveChange="LiveChangeOvNova"
                                         maxLength="10"
                                     />
 
@@ -144,13 +169,13 @@
         </f:header>
         <f:content>
             <Table 
-                id="idPickingTransfTable" 
+                id="idTable" 
                 sticky="HeaderToolbar,ColumnHeaders" 
                 inset="false" 
                 items="{
-                        path: '/PickingTransfNovo',
+                        path: '/Picking',
                         sorter: {
-                            path: 'Matnr'
+                            path: 'Ov'
                         }
                 }"
                 class="sapFDynamicPageAlignContent"
@@ -159,26 +184,14 @@
                 mode="SingleSelect"
                 >
                 <columns>
-                    <Column id="_IDGenColumn1" width="12em">
-                        <Text id="_IDGenText1" text="Material"/>
-                    </Column>
-                    <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true">
-                        <Text id="_IDGenText2" text="Lote"/>
-                    </Column>
-                    <Column id="_IDGenColumn3" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-                        <Text id="_IDGenText3" text="Quantidade"/>
-                    </Column>
-                    <Column id="_IDGenColumn4" hAlign="End">
-                        <Text id="_IDGenText4" text="Estoque Especial"/>
+                    <Column id="_IDGenColumn1" width="18em">
+                        <Text id="_IDGenText1" text="Ov"/>
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem1">
                         <cells>
-                            <Text id="_IDGenText14" text="{Matnr}"/>
-                            <Text id="_IDGenText15" text="{Lote}"/>
-                            <Text id="_IDGenText16" text="{Quantidade}"/>
-                            <Text id="_IDGenText17" text="{EstoqueEspecial}"/>
+                            <Text id="_IDGenText14" text="{Ov}"/>
                         </cells>
                     </ColumnListItem>
                 </items>
@@ -188,8 +201,8 @@
         <f:footer>
             <OverflowToolbar id="_IDGenOverflowToolbarFooter">
                 <ToolbarSpacer id="_IDGenToolbarSpacerFooter"/>
-                <Button id="_footerButton1" type="Emphasized" text="Finalizar Picking" press="onFooterFinalizarClick"/>
-                <Button id="_footerButton2" type="Default" text="Eliminar Lote" press="onFooterEliminarLoteClick"/>
+                <Button id="_footerButton1" type="Emphasized" text="Finalizar" press="FooterFinalizarClick"/>
+                <Button id="_footerButton2" type="Default" text="Eliminar Item" press="FooterEliminarClick"/>
             </OverflowToolbar>
         </f:footer>
     </f:DynamicPage>

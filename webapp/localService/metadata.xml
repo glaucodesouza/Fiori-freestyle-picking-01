@@ -43,7 +43,15 @@
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="cds_z270_ui_transporte" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
-            <EntityType Name="ZR270transporteType" sap:label="Transporte p/ picking" sap:content-version="1">
+            <EntityType Name="PickingType" sap:label="Picking de Ovs para Transporte" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Transporte"/>
+                </Key>
+                <Property Name="Transporte" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Ov" Type="Edm.String" MaxLength="10"/>
+            </EntityType>
+            <EntityType Name="TransporteType" sap:label="Transporte p/ picking" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Transporte"/>
                 </Key>
@@ -215,7 +223,8 @@
                 <EntitySet Name="SAP__CoverPageSet" EntityType="cds_z270_ui_transporte.SAP__CoverPage" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 <EntitySet Name="SAP__SignatureSet" EntityType="cds_z270_ui_transporte.SAP__Signature" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 <EntitySet Name="SAP__ValueHelpSet" EntityType="cds_z270_ui_transporte.SAP__ValueHelp" sap:content-version="1"/>
-                <EntitySet Name="ZR270transporte" EntityType="cds_z270_ui_transporte.ZR270transporteType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Picking" EntityType="cds_z270_ui_transporte.PickingType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Transporte" EntityType="cds_z270_ui_transporte.TransporteType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
                 <EntitySet Name="SAP__Currencies" EntityType="cds_z270_ui_transporte.SAP__Currency" sap:content-version="1"/>
                 <EntitySet Name="SAP__UnitsOfMeasure" EntityType="cds_z270_ui_transporte.SAP__UnitOfMeasure" sap:content-version="1"/>
                 <EntitySet Name="SAP__MyDocumentDescriptions" EntityType="cds_z270_ui_transporte.SAP__DocumentDescription" sap:content-version="1"/>

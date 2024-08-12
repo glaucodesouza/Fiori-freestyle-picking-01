@@ -80,7 +80,7 @@
                 sticky="HeaderToolbar,ColumnHeaders" 
                 inset="false" 
                 items="{
-                        path: '/ZR270transporte',
+                        path: '/Transporte',
                         sorter: {                             
                             path: 'Transporte'
                         }
