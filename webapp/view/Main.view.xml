@@ -47,7 +47,7 @@
                                         name="Transporte"
                                         selectionChange=".onSelectionChange"
                                         items="{
-                                            path: '/ZR270transporte',
+                                            path: '/Transporte',
                                             templateShareable: true
                                         }"
                                     >
@@ -61,7 +61,7 @@
                                         name="Status"
                                         selectionChange=".onSelectionChange"
                                         items="{
-                                            path: '/ZR270transporte',
+                                            path: '/Transporte',
                                             templateShareable: true
                                         }"
                                     >

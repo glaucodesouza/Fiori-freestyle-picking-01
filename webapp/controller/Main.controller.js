@@ -218,7 +218,7 @@ sap.ui.define([
                     //aqui é quando já há lotes no picking
                     oRouter.navTo("RouteMainDetail",{
                         Transporte : oCtx.getProperty("Transporte"),
-                        Status : oCtx.getProperty("Status") ? oCtx.getProperty("Status") : '1'
+                        Status : oCtx.getProperty("Status") ? oCtx.getProperty("Status") : oCtx.getProperty("Status")
                     });
                 
                 } catch (error) {

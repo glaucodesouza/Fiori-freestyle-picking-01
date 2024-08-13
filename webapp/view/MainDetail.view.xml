@@ -220,10 +220,8 @@
                 sticky="HeaderToolbar,ColumnHeaders" 
                 inset="false" 
                 items="{
-                        path: '/Picking',
-                        sorter: {
-                            path: 'Ov'
-                        }
+                        path: '/Picking'
+                        
                 }"
                 class="sapFDynamicPageAlignContent"
                 width="auto"

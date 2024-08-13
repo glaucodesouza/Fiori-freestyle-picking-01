@@ -29,7 +29,7 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 			//--------------------------------------------------
 			// Binding
 			//--------------------------------------------------
-			let spath = `/Picking(Transporte='` + sTransporte + `,Status='` + sStatus + `')`;
+			let spath = `/Picking(Transporte='` + sTransporte + `',Status='` + sStatus + `')`;
 			let oView =  this.getView();
 			
 			oView.bindElement({
@@ -160,7 +160,7 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 			oData.create("/PickingSet", dados, {
 				success: function (oData) {
 					oModelCab.oData.status = '2';
-					parseFloat(oModelCab.oData.pesoTotal) += parseFloat('1.250');
+					// parseFloat(oModelCab.oData.pesoTotal) += parseFloat('1.250');
 					// refresh no grid
 					let oViewModel = this.getView().getModel().refresh();
 				}.bind(this),
