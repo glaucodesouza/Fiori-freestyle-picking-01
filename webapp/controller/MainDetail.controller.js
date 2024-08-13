@@ -29,7 +29,7 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 			//--------------------------------------------------
 			// Binding
 			//--------------------------------------------------
-			let spath = `/(Transporte='` + sTransporte + `')`;
+			let spath = `/Picking(Transporte='` + sTransporte + `,Status='` + sStatus + `')`;
 			let oView =  this.getView();
 			
 			oView.bindElement({
@@ -45,6 +45,7 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 			oModelCab.oData.status  = sStatus;
 
 			oModelCab.oData.qtdeItens = 0;
+			oModelCab.oData.pesoTotal = 0.000;
 			
 			oModelCab.setData(oModelCab.oData);
 			this.getView().setModel(oModelCab, 'modelCab');
@@ -89,8 +90,8 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 
 		LiveChangeOvNova: function(){		
 
-			oModelCab.oData.ovNova = this.byId("idNovaOv").getValue().trim();
-            this.inserirPicking();
+			// oModelCab.oData.ovNova = this.byId("idNovaOv").getValue().trim();
+            // this.inserirPicking();
 		},
         
 		inserirPicking: function () {
@@ -103,38 +104,69 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 			// let oModelLoteNovo 	= this.getView().getModel('modelLoteNovo');
 
 			// Preencher dados p/ o novo item de picking
-			var dados = {
-				Transporte: 	 oModelCab.oData.transporte,
-				Ov: 		     oModelCab.oData.ovNova,
-				Status: 		 '2'  //Em Picking
+			// var dados = {
+			// 	Transporte: 	 oModelCab.oData.transporte,
+			// 	Ov: 		     oModelCab.oData.ovNova,
+			// 	Status: 		 '2'  //Em Picking
+			// };
+			
+			// // Picking SAP Model
+			// let oModel = new ODataModel("/sap/opu/odata/sap/ZGWEWM_PICKING_TF_SRV");
+			
+			// // Inserir novo item de Picking
+			// // Salvar novo lote lido nas tabelas ZEWMT0011S4 e ZEWMT0012S4.
+			// // Adiciona lote lido na lista de picking (Refresh na model do Grid).
+			// oModel.create("/PickingSet", dados, {
+			// 	success: function (oDados, response) {
+			
+			// 		// Limpar campo de input de Lote novo
+			// 		this.getView().byId("idNovaOv").setValue("");
+			// 		// refresh no grid
+			// 		this.getView().getModel().refresh();
+
+			// 		// //Atualizar STATUS na tela
+			// 		// this.atualizarStatusTela('Em Picking', oModelCab);
+
+			// 	}.bind(this),
+			// 	error: function (oError) {
+			// 		// Limpar campo de input de Lote novo
+			// 		this.getView().byId("idNovaOv").setValue("");
+			
+			// 		let oMessage = JSON.parse(oError.responseText);
+            //         let oMessage2 = (oMessage.error.innererror.errordetails[0].message);
+			// 		sap.m.MessageBox.error("Erro técnico ao inserir novo  picking");
+			// 	}.bind(this),
+			// });
+		},
+
+		inserirOvClick: function() {
+			let sOv = this.getView().byId('idNovaOv').getValue().trim();
+			
+            if(sOv.trim() === '') {
+                sap.m.MessageBox.warning('Por favor, preencha o campo de OV para inserir um novo picking');
+                return;
+            }
+			
+			let dados = {
+				Transporte: oModelCab.oData.transporte,
+				Status:     oModelCab.oData.status,
+				Ov: 		sOv,
+				Peso: 		String('1.250')
 			};
+
+			let sUrl = `/sap/opu/odata/sap/Z270PICKING_SRV`;
+			let oData = new sap.ui.model.odata.v2.ODataModel(sUrl);
 			
-			// Picking SAP Model
-			let oModel = new ODataModel("/sap/opu/odata/sap/ZGWEWM_PICKING_TF_SRV");
-			
-			// Inserir novo item de Picking
-			// Salvar novo lote lido nas tabelas ZEWMT0011S4 e ZEWMT0012S4.
-			// Adiciona lote lido na lista de picking (Refresh na model do Grid).
-			oModel.create("/PickingSet", dados, {
-				success: function (oDados, response) {
-					
-					// Limpar campo de input de Lote novo
-					this.getView().byId("idNovaOv").setValue("");
+			oData.create("/PickingSet", dados, {
+				success: function (oData) {
+					oModelCab.oData.status = '2';
+					parseFloat(oModelCab.oData.pesoTotal) += parseFloat('1.250');
 					// refresh no grid
-					this.getView().getModel().refresh();
-
-					// //Atualizar STATUS na tela
-					// this.atualizarStatusTela('Em Picking', oModelCab);
-
+					let oViewModel = this.getView().getModel().refresh();
 				}.bind(this),
-				error: function (oError) {
-					// Limpar campo de input de Lote novo
-					this.getView().byId("idNovaOv").setValue("");
-					
-					let oMessage = JSON.parse(oError.responseText);
-                    let oMessage2 = (oMessage.error.innererror.errordetails[0].message);
-					sap.m.MessageBox.error("Erro técnico ao inserir novo  picking");
-				}.bind(this),
+				error: function (error) {
+					sap.m.MessageBox.error('Erro técnico ao chamar o SAP');					
+				}.bind(this)
 			});
 		}
 

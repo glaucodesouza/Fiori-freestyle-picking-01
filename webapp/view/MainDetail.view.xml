@@ -122,7 +122,7 @@
                                     <Text
                                         text="{modelCab>/qtdeItens}"
                                         width="100%"
-                                        id="label4"
+                                        id="label31"
                                     />
                                 </items>
                             </VBox>
@@ -140,6 +140,31 @@
                             >
                                 <items>
                                     <Label
+                                        text="Peso Total:"
+                                        width="100%"
+                                        id="label4"
+                                    />
+                                    <Text
+                                        text="{modelCab>/pesoTotal}"
+                                        width="100%"
+                                        id="label41"
+                                    />
+                                </items>
+                            </VBox>
+                            <!-- VBox 5 -->
+                            <VBox
+                                xmlns:mvc="sap.ui.core.mvc"
+                                xmlns="sap.m"
+                                xmlns:f="sap.f"
+                                xmlns:layout="sap.ui.layout"
+                                xmlns:sap.ui.layout.form="sap.ui.layout.form"
+                                xmlns:sap.ui.core="sap.ui.core"
+                                width="18%"
+                                direction="Column"
+                                id="vbox5"
+                            >
+                                <items>
+                                    <Label
                                         text="Ov:"
                                         width="100%"
                                         id="lblOv"
@@ -151,12 +176,34 @@
                                         showValueHelp="false" 
                                         width="8rem" 
                                         visible="true"
-                                        liveChange="LiveChangeOvNova"
+                                        liveChange=""
                                         maxLength="10"
                                     />
 
                                 </items>
-                            </VBox>                 
+                            </VBox>
+                            <!-- VBox 6 -->
+                            <VBox
+                                xmlns:mvc="sap.ui.core.mvc"
+                                xmlns="sap.m"
+                                xmlns:f="sap.f"
+                                xmlns:layout="sap.ui.layout"
+                                xmlns:sap.ui.layout.form="sap.ui.layout.form"
+                                xmlns:sap.ui.core="sap.ui.core"
+                                width="18%"
+                                direction="Column"
+                                id="vbox6"
+                            >
+                                <items>
+                                    <Button
+                                        text="Inserir Ov"
+                                        id="btnInserirOv"
+                                        press="inserirOvClick"
+                                        type="Emphasized"
+                                    />
+                                    
+                                </items>
+                            </VBox>
                         </items>
                     </HBox>
 
