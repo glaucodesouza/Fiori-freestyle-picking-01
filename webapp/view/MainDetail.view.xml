@@ -220,7 +220,10 @@
                 sticky="HeaderToolbar,ColumnHeaders" 
                 inset="false" 
                 items="{
-                        path: '/Picking'
+                        path: '/Picking',
+                        sorter: {
+                            path: 'Ov'
+                        }
                         
                 }"
                 class="sapFDynamicPageAlignContent"
@@ -230,13 +233,13 @@
                 >
                 <columns>
                     <Column id="_IDGenColumn1" width="18em">
-                        <Text id="_IDGenText1" text="Ov"/>
+                        <Text id="_IDGenText11" text="Ov"/>
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem1">
                         <cells>
-                            <Text id="_IDGenText14" text="{Ov}"/>
+                            <Text id="_IDGenText111" text="{Ov}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

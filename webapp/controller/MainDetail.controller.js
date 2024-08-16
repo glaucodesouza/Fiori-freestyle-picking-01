@@ -53,15 +53,15 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 			//--------------------------------------------------
 			//Aplicar Filtro no Table com dados do cabeçalho
 			//--------------------------------------------------
-			let oTable = this.byId("idTable");
-			let oTransporte = new sap.ui.model.Filter("Transporte", sap.ui.model.FilterOperator.Contains, sTransporte);
-			let oStatus = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, sStatus);
-			let allFilter = new sap.ui.model.Filter([oTransporte, oStatus], false); 
-			let oBinding = oTable.getBinding("items");
-			oBinding.filter(allFilter);
+			// let oTable = this.byId("idTable");
+			// let oTransporte = new sap.ui.model.Filter("Transporte", sap.ui.model.FilterOperator.Contains, sTransporte);
+			// let oStatus = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, sStatus);
+			// let allFilter = new sap.ui.model.Filter([oTransporte, oStatus], false); 
+			// let oBinding = oTable.getBinding("items");
+			// oBinding.filter(allFilter);
 
-			// refresh no grid
-			let oViewModel = this.getView().getModel().refresh();
+			// // refresh no grid
+			// let oViewModel = this.getView().getModel().refresh();
 
 		},
 		getPage : function() {
@@ -80,8 +80,8 @@ function (Controller, Fragment, ODataModel, syncStyleClass) {
 		// Ao finalizar o UPDATE do Table
 		onUpdateFinished: function(){
 			
-			oModelCab.oData.qtdeItens = this.getView().byId("idTable").getItems().length;
-            oModelCab.setData(oModelCab.oData);
+			// oModelCab.oData.qtdeItens = this.getView().byId("idTable").getItems().length;
+            // oModelCab.setData(oModelCab.oData);
 		},
 
 		onLoteSHPress: function(){
